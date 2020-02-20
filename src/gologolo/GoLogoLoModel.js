@@ -6,6 +6,9 @@ export default class GoLogoLoModel extends AppsterModel {
         super();
         this.currentWork = null;
     }
+    buildName(workName) {
+        return new GoLogoLoLogo(workName);
+    }
 
     createNewWork(workName) {
         let newRandomText = new GoLogoLoText(workName);

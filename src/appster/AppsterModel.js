@@ -33,9 +33,10 @@ export default class AppsterModel {
             console.log("length zero");
         }
         if (this.getRecentWork(text.value) == null) {
-            //let CreateName = GoLogoLoLogo.buildName(text);
-            appendWork(CreateName);
-            this.view.refreshRecentWork(recentWork);
+            let CreateName = this.buildName(text);
+            this.appendWork(CreateName);
+            this.view.refreshRecentWork(this.recentWork);
+            this.view.cancel();
         }
         else {
             console.log("already exists");
