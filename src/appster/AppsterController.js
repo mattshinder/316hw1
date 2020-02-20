@@ -169,6 +169,7 @@ export default class AppsterController {
      */
     processDeleteWork = () => {
         // VERIFY VIA A DIALOG BOX
-        this.model.showDialogss();
+        console.log("processDelteWork");
+        this.model.goDelete();
     }
 }

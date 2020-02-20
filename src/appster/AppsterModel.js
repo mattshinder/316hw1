@@ -28,12 +28,24 @@ export default class AppsterModel {
         this.view.showDialogText();
     }
     goEnter() {
-        this.view.enter();
+        let text = this.view.getName();
+        if (text.length == 0) {
+            console.log("length zero");
+        }
+        if (this.getRecentWork(text.value) == null) {
+            //let CreateName = GoLogoLoLogo.buildName(text);
+            appendWork(CreateName);
+            this.view.refreshRecentWork(recentWork);
+        }
+        else {
+            console.log("already exists");
+        }
     }
+
     goCancel() {
         this.view.cancel();
     }
-    showDialogss() {
+    goDelete() {
         this.view.showDialog();
     }
 
