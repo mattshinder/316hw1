@@ -26,7 +26,7 @@ export default class AppsterController {
         if (control)
             control.addEventListener(eventName, callback);
     }
-    // test commit
+    
     registerAppsterEventHandlers() {
         // FIRST THE NEW WORK BUTTON ON THE HOME SCREEN
         this.registerEventHandler(AppsterGUIId.APPSTER_HOME_NEW_WORK_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CREATE_NEW_WORK]);
@@ -38,6 +38,10 @@ export default class AppsterController {
         // AND THE MODAL BUTTONS
         this.registerEventHandler(AppsterGUIId.DIALOG_YES_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_DELETE_WORK]);
         this.registerEventHandler(AppsterGUIId.DIALOG_NO_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_DELETE_WORK]);
+
+        // ADD THE ENTER / CANCEL BUTTONS
+        this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_ENTER_WORK]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_WORK]);
     }
 
     /**
@@ -80,6 +84,16 @@ export default class AppsterController {
     processGoEdit(workToEdit) {
         console.log("processGoEdit");
         this.model.goEdit(workToEdit);
+    }
+
+    // for enter and cancel work
+    processEnterWork = () => {
+        console.log("processEnterWork");
+        this.model.goEnter();
+    }
+    processCancelWork = () => {
+        console.log("processCancelWork")
+        this.model.goCancel();
     }
 
     /**
@@ -153,8 +167,8 @@ export default class AppsterController {
      * button, i.e. the delete button, in order to delete the
      * list being edited.
      */
-    processDeleteWork() {
+    processDeleteWork = () => {
         // VERIFY VIA A DIALOG BOX
-        window.todo.model.view.showDialog();
+        this.model.showDialogss();
     }
 }

@@ -27,6 +27,15 @@ export default class AppsterModel {
         this.view.buildAppsterTextInputModal();
         this.view.showDialogText();
     }
+    goEnter() {
+        this.view.enter();
+    }
+    goCancel() {
+        this.view.cancel();
+    }
+    showDialogss() {
+        this.view.showDialog();
+    }
 
     editWork(workNameToEdit) {
         // GET THE WORK THAT WE PLAN TO EDIT

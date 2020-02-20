@@ -527,4 +527,18 @@ export default class AppsterView {
         let dialog = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
         dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
    }
+   // need to check all data too. Note
+   enter() {
+       let text = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_TEXTFIELD).value;
+       if (text.length == 0) {
+           console.log("length zero");
+       }
+       else {
+           console.log("acceptable length");
+       }
+   }
+   cancel() {
+       let dialog = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
+       dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
+   }
 }
