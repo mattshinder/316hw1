@@ -49,10 +49,21 @@ export default class AppsterModel {
     goDelete() {
         this.view.showDialog();
     }
+    goCancelDelete() {
+        this.view.hideDialog();
+    }
+    getWorkToEdit() {
+        return this.currentWork;
+    }
+    afterDelete() {
+        this.view.refreshRecentWork(this.recentWork);
+    }
 
     editWork(workNameToEdit) {
         // GET THE WORK THAT WE PLAN TO EDIT
+        console.log(this.recentWork);
         let work = this.getRecentWork(workNameToEdit);
+        this.currentWork = workNameToEdit;
 
         if (work) {
             // SET IT AS THE WORK WE ARE EDITING
@@ -77,7 +88,7 @@ export default class AppsterModel {
         
         // ALL RECENT WORK HAS BEEN LOADED FROM THE
         // JSON FILE, NOW WE CAN UPDATE THE VIEW
-        this.view.refreshRecentWork(this.recentWork);        
+        this.view.refreshRecentWork(this.recentWork);      
     }
 
     /**
@@ -98,6 +109,7 @@ export default class AppsterModel {
     prependWork(workToPrepend) {
         this.recentWork.unshift(workToPrepend);
         this.view.reloadRecentWorkLinks(this.recentWork);
+        console.log(workToPrepend.name + " prepended");
     }
 
     /**
@@ -105,11 +117,20 @@ export default class AppsterModel {
      * 
      * @param {AppWork} workToRemove Work to remove, presumably it's been deleted.
      */
-    removeWork(workToRemove) {
+    removeWork (workToRemove) {
         // REMOVE IT IF IT EXISTS
         let indexOfWork = this.recentWork.indexOf(workToRemove);
+        if (indexOfWork == -1) {
+            for (let i = 0; i < this.recentWork.length; i++) {
+                let name1 = this.recentWork[i].name;
+                if(name1 == workToRemove) {
+                    indexOfWork = i;
+                }
+            }
+        }
         if (indexOfWork >= 0)
             this.recentWork.splice(indexOfWork, 1);
+            console.log(workToRemove.name + " removed");
         this.view.reloadRecentWorkLinks(this.recentWork);
     }
 

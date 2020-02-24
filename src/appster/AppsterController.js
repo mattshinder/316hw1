@@ -42,6 +42,9 @@ export default class AppsterController {
         // ADD THE ENTER / CANCEL BUTTONS
         this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_ENTER_WORK]);
         this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_WORK]);
+        // Confirm / Cancel Delete Buttons
+        this.registerEventHandler(AppsterGUIId.APPSTER_YES_NO_MODAL_YES_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_DELETE_WORK]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_YES_NO_MODAL_NO_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_DELETE_WORK]);
     }
 
     /**
@@ -133,8 +136,10 @@ export default class AppsterController {
      * button in the popup dialog after having requested to delete
      * the loaded work.
      */
-    processCancelDeleteWork() {
+    processCancelDeleteWork = () => {
         // JUST HIDE THE DIALOG
+        console.log("CancelDelte");
+        this.model.goCancelDelete();
 
     }
 
@@ -154,9 +159,12 @@ export default class AppsterController {
      * button in the popup dialog after having requested to delete
      * the loaded work.
      */
-    processConfirmDeleteWork() {
+    processConfirmDeleteWork = () => {
         // DELETE THE WORK
+        console.log("ConfirmDelte");
         this.model.removeWork(this.model.getWorkToEdit());
+        this.model.goCancelDelete();
+        this.model.afterDelete();
 
         // GO BACK TO THE HOME SCREEN
         this.model.goHome();
