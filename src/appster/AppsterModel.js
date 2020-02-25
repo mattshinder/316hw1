@@ -27,19 +27,22 @@ export default class AppsterModel {
         this.view.buildAppsterTextInputModal();
         this.view.showDialogText();
     }
+    goClose() {
+        this.view.hideConfirm();
+    }
     goEnter() {
         let text = this.view.getName();
         if (text.length == 0) {
-            console.log("length zero");
+            this.view.showZero();
         }
-        if (this.getRecentWork(text.value) == null) {
+        if (this.getRecentWork(text) == null) {
             let CreateName = this.buildName(text);
             this.appendWork(CreateName);
             this.view.refreshRecentWork(this.recentWork);
             this.view.cancel();
         }
         else {
-            console.log("already exists");
+            this.view.showConfirm();
         }
     }
 

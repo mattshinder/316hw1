@@ -84,10 +84,12 @@ export default class AppsterView {
             let appsterYesNoModal = this.buildAppsterYesNoModal();
             let appsterConfirmModal = this.buildAppsterConfirmModal();
             let appsterTextInputModal = this.buildAppsterTextInputModal();
+            let appsterZeroModal = this.buildAppsterZeroModal();
             appsterRootDiv.appendChild(appsterHomeScreenDiv);
             appsterRootDiv.appendChild(appsterEditScreenDiv);
             appsterRootDiv.appendChild(appsterYesNoModal);
             appsterRootDiv.appendChild(appsterConfirmModal);
+            appsterRootDiv.appendChild(appsterZeroModal);
             appsterRootDiv.appendChild(appsterTextInputModal);
 
             // HIDE THE THINGS THAT ARE NOT VISIBLE
@@ -284,6 +286,47 @@ export default class AppsterView {
         confirmFrame.appendChild(footer);
         confirmModal.appendChild(confirmFrame);
         return confirmModal;
+    }
+    buildAppsterZeroModal() {
+        let zeroModal = this.buildElement( AppsterHTML.DIV, 
+                                            AppsterGUIId.APPSTER_ZERO_MODAL,
+                                            [AppsterGUIClass.APPSTER_MODAL],
+                                            [],
+                                            null,
+                                            AppsterGUIClass.MODAL_ANIMATION_LEFT);
+        let zeroFrame = this.buildElement( AppsterHTML.DIV, 
+                                            AppsterGUIId.APPSTER_ZERO_MODAL_FRAME,
+                                            [AppsterGUIClass.APPSTER_MODAL_FRAME]);
+        let header = this.buildElement( AppsterHTML.HEADER, 
+                                        AppsterGUIId.APPSTER_ZERO_MODAL_HEADER,
+                                        [AppsterGUIClass.APPSTER_MODAL_HEADER]);
+        let section = this.buildElement(    AppsterHTML.SECTION, 
+                                            AppsterGUIId.APPSTER_ZERO_MODAL_SECTION,
+                                            [AppsterGUIClass.APPSTER_MODAL_SECTION]);
+        let p = this.buildElement(AppsterHTML.P);
+        let strong = this.buildElement(     AppsterHTML.STRONG, 
+                                            "",
+                                            [],
+                                            [],
+                                            AppsterText.APPSTER_ZERO_MODAL_PROMPT_TEXT);
+        let okButton = this.buildElement(   AppsterHTML.BUTTON, 
+                                            AppsterGUIId.APPSTER_ZERO_MODAL_OK_BUTTON,
+                                            [AppsterGUIClass.APPSTER_MODAL_BUTTON],
+                                            [],
+                                            AppsterText.APPSTER_ZERO_MODAL_OK_BUTTON_TEXT);
+        let footer = this.buildElement(     AppsterHTML.FOOTER, 
+                                            "", 
+                                            [AppsterGUIClass.APPSTER_MODAL_FOOTER],
+                                            [],
+                                            AppsterText.APPSTER_ZERO_MODAL_FOOTER_TEXT);
+        p.appendChild(strong);
+        section.appendChild(p);
+        zeroFrame.appendChild(header);
+        zeroFrame.appendChild(section);
+        section.appendChild(okButton);
+        zeroFrame.appendChild(footer);
+        zeroModal.appendChild(zeroFrame);
+        return zeroModal;
     }
 
     buildAppsterTextInputModal() {
@@ -534,4 +577,22 @@ export default class AppsterView {
    getName() {
        return document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_TEXTFIELD).value;
    }
+   showConfirm() {
+        let dialog = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
+        dialog.classList.remove(AppsterGUIId.IS_VISIBLE);
+        dialog = document.getElementById(AppsterGUIId.APPSTER_CONFIRM_MODAL);
+        dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
+    }
+   showZero() {
+       let dialog = document.getElementById(AppsterGUIId.APPSTER_ZERO_MODAL);
+       dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
+       dialog = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
+       dialog.classList.remove(AppsterGUIId.IS_VISIBLE);
+    }
+   hideConfirm() {
+        let dialog = document.getElementById(AppsterGUIId.APPSTER_CONFIRM_MODAL);
+        dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
+        dialog = document.getElementById(AppsterGUIId.APPSTER_ZERO_MODAL);
+        dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
+    }
 }

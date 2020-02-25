@@ -42,9 +42,14 @@ export default class AppsterController {
         // ADD THE ENTER / CANCEL BUTTONS
         this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_ENTER_WORK]);
         this.registerEventHandler(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL_CANCEL_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_WORK]);
+        // OK Button
+        this.registerEventHandler(AppsterGUIId.APPSTER_CONFIRM_MODAL_OK_BUTTON,AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_OK]);
+        this.registerEventHandler(AppsterGUIId.APPSTER_ZERO_MODAL_OK_BUTTON,AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_OK]);
+
         // Confirm / Cancel Delete Buttons
         this.registerEventHandler(AppsterGUIId.APPSTER_YES_NO_MODAL_YES_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CONFIRM_DELETE_WORK]);
         this.registerEventHandler(AppsterGUIId.APPSTER_YES_NO_MODAL_NO_BUTTON, AppsterHTML.CLICK, this[AppsterCallback.APPSTER_PROCESS_CANCEL_DELETE_WORK]);
+
     }
 
     /**
@@ -95,8 +100,12 @@ export default class AppsterController {
         this.model.goEnter();
     }
     processCancelWork = () => {
-        console.log("processCancelWork")
+        console.log("processCancelWork");
         this.model.goCancel();
+    }
+    processOk = () => {
+        console.log("okclicked");
+        this.model.goClose();
     }
 
     /**

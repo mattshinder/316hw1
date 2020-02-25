@@ -28,6 +28,7 @@ export const AppsterCallback = {
     APPSTER_PROCESS_CANCEL_DELETE_WORK: "processCancelDeleteWork",
     APPSTER_PROCESS_ENTER_WORK: "processEnterWork",
     APPSTER_PROCESS_CANCEL_WORK: "processCancelWork",
+    APPSTER_PROCESS_OK: "processOk",
 };
 
 /**
@@ -96,6 +97,12 @@ export const AppsterGUIId = {
     APPSTER_CONFIRM_MODAL_SECTION: 'appster_confirm_modal_section',
     APPSTER_CONFIRM_MODAL_OK_BUTTON: 'appster_confirm_modal_ok_button',
     APPSTER_CONFIRM_MODAL_FOOTER: 'appster_confirm_frame',
+    APPSTER_ZERO_MODAL: 'appster_zero_modal',
+    APPSTER_ZERO_MODAL_FRAME: 'appster_zero_modal_frame',
+    APPSTER_ZERO_MODAL_HEADER: 'appster_zero_modal_header',
+    APPSTER_ZERO_MODAL_SECTION: 'appster_zero_modal_section',
+    APPSTER_ZERO_MODAL_OK_BUTTON: 'appster_zero_modal_ok_button',
+    APPSTER_ZERO_MODAL_FOOTER: 'appster_zero_frame',
     APPSTER_TEXT_INPUT_MODAL: 'appster_text_input_modal',
     APPSTER_TEXT_INPUT_MODAL_FRAME: 'appster_text_input_modal_frame',
     APPSTER_TEXT_INPUT_MODAL_HEADER: 'appster_text_input_modal_header',
@@ -163,6 +170,10 @@ export const AppsterText = {
     APPSTER_CONFIRM_MODAL_PROMPT_TEXT: "appster_confirm_modal_prompt_text",
     APPSTER_CONFIRM_MODAL_OK_BUTTON_TEXT: "appster_confirm_modal_ok_button_text",
     APPSTER_CONFIRM_MODAL_FOOTER_TEXT: "appster_confirm_modal_footer_text",
+
+    APPSTER_ZERO_MODAL_PROMPT_TEXT: "appster_zero_modal_prompt_text",
+    APPSTER_ZERO_MODAL_OK_BUTTON_TEXT: "appster_zero_modal_ok_button_text",
+    APPSTER_ZERO_MODAL_FOOTER_TEXT: "appster_zero_modal_footer_text",
 
     APPSTER_TEXT_INPUT_MODAL_PROMPT_TEXT: "appster_text_input_modal_prompt_text",
     APPSTER_TEXT_INPUT_MODAL_ENTER_BUTTON_TEXT: "appster_text_input_modal_enter_button_text",

@@ -14,6 +14,10 @@
         {"appster_confirm_modal_prompt_text": "Illegal name, logo already exists with that name"},
         {"appster_confirm_modal_ok_button_text": "Ok"},
         {"appster_confirm_modal_footer_text": "Duplicate Name"},
+
+        {"appster_zero_modal_prompt_text": "Illegal name logo must have at least one character"},
+        {"appster_zero_modal_ok_button_text": "Ok"},
+        {"appster_zero_modal_footer_text": "Invalid Length"},
         
         {"appster_text_input_modal_prompt_text": "Enter a name for your logo: "},
         {"appster_text_input_modal_enter_button_text": "Enter"},
