@@ -579,7 +579,7 @@ export default class AppsterView {
    }
    showConfirm() {
         let dialog = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
-        dialog.classList.remove(AppsterGUIId.IS_VISIBLE);
+        dialog.classList.remove(AppsterGUIClass.IS_VISIBLE);
         dialog = document.getElementById(AppsterGUIId.APPSTER_CONFIRM_MODAL);
         dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
     }

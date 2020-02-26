@@ -29,6 +29,19 @@ export const GoLogoLoGUIId = {
     GOLOGOLO_TEXT: "gologolo_text"
 };
 
+export const GoLogoLoCallBack = {
+    GOLOGOLO_PROCESS_EDIT_TEXT_BUTTON: "processEditText",
+    GOLOGOLO_PROCESS_FONT_SIZE_SLIDER: "processFontSlider",
+    GOLOGOLO_PROCESS_TEXT_COLOR_PICKER: "processTextColorPicker",
+    GOLOGOLO_PROCESS_BACKGROUND_COLOR_PICKER: "processBackgroundColorPicker",
+    GOLOGOLO_PROCESS_BORDER_COLOR_PICKER: "processBorderColorPicker",
+    GOLOGOLO_PROCESS_BORDER_RADIUS_SLIDER: "processBorderRadiusSlider",
+    GOLOGOLO_PROCESS_BORDER_THICKNESS_SLIDER: "processBorderThicknessSlider",
+    GOLOGOLO_PROCESS_BORDER_PADDING_SLIDER: "processBorderPaddingSlider",
+    GOLOGOLO_PROCESS_MARGIN_SLIDER: "processMarginSlider"
+    
+}
+
 export const GoLogoLoText = {
     GOLOGOLO_EDIT_TEXT_TEXT: "gologolo_edit_text_text",
     GOLOGOLO_FONT_SIZE_TEXT: "gologolo_font_size_text",

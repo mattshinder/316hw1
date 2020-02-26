@@ -35,7 +35,7 @@ export default class AppsterModel {
         if (text.length == 0) {
             this.view.showZero();
         }
-        if (this.getRecentWork(text) == null) {
+        else if (this.getRecentWork(text) == null) {
             let CreateName = this.buildName(text);
             this.appendWork(CreateName);
             this.view.refreshRecentWork(this.recentWork);
