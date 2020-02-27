@@ -82,8 +82,8 @@ export default class GoLogoLoModel extends AppsterModel {
         else if (this.getRecentWork(text) == null) {
             let vars = this.getRecentWork(this.currentWork);
             vars.setText(text);
-            this.view.hideCancelWork();
             this.view.updateTextName(text);
+            this.view.hideCancelWork();
         }
         else {
             this.view.showConfirm();

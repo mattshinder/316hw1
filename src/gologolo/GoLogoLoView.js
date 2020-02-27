@@ -153,6 +153,7 @@ export default class GoLogoLoView extends AppsterView {
         textDiv.style.padding = work.getPadding() + "px";
         textDiv.style.margin = work.getMargin() + "px";
         textDiv.style.text = work.getText();
+        textDiv.style.borderStyle = "solid";
     }
 
     addListItem(initText) {
@@ -239,5 +240,7 @@ export default class GoLogoLoView extends AppsterView {
     updateTextName(newName) {
         console.log(newName);
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.text = newName;
+        this.goToHomeScreen();
+        this.goToEditScreen();
     }
 }
