@@ -40,6 +40,7 @@ export default class AppsterModel {
             this.appendWork(CreateName);
             this.view.refreshRecentWork(this.recentWork);
             this.view.cancel();
+            this.editWork(CreateName.name);
         }
         else {
             this.view.showConfirm();

@@ -20,8 +20,16 @@ export default class GoLogoLoController
         this.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER, AppsterHTML.INPUT, this[GoLogoLoCallBack.GOLOGOLO_PROCESS_BORDER_PADDING_SLIDER]);
         this.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER, AppsterHTML.INPUT, this[GoLogoLoCallBack.GOLOGOLO_PROCESS_MARGIN_SLIDER]);
 
-    }
+        this.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_ENTER_BUTTON, AppsterHTML.CLICK, this[GoLogoLoCallBack.GOLOGOLO_PROCESS_ENTER_WORK]);
+        this.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_CANCEL_BUTTON, AppsterHTML.CLICK, this[GoLogoLoCallBack.GOLOGOLO_PROCESS_CANCEL_WORK]);
 
+    }
+    processGoEnterWork = () => {
+        this.model.goEnterWork();
+    }
+    processGoCancelWork = () => {
+        this.model.goCancelWork();
+    }
     processEditText = () => {
         this.model.updateText();
     }

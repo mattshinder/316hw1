@@ -74,4 +74,22 @@ export default class GoLogoLoModel extends AppsterModel {
     updateMargin() {
         this.view.updateMarginSlider();
     }
+    goEnterWork() {
+        let text = this.view.getGoName();
+        if (text.length == 0) {
+            this.view.showZero();
+        }
+        else if (this.getRecentWork(text) == null) {
+            let vars = this.getRecentWork(this.currentWork);
+            vars.setText(text);
+            this.view.hideCancelWork();
+            this.view.updateTextName(text);
+        }
+        else {
+            this.view.showConfirm();
+        }
+    }
+    goCancelWork() {
+        this.view.hideCancelWork();
+    }
 }

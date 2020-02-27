@@ -21,6 +21,10 @@
     visibility: visible;
     opacity: 1;
   }
+  .gologolo_modal.is_visible {
+    visibility: visible;
+    opacity: 1;
+  }
 
   .appster_modal_frame {
     position: relative;

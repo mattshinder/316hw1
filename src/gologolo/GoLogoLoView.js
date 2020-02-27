@@ -1,6 +1,7 @@
 import {GoLogoLoGUIClass, GoLogoLoGUIId, GoLogoLoText} from './GoLogoLoConstants.js'
 import {AppsterHTML, AppsterSymbols} from '../appster/AppsterConstants.js'
 import AppsterView from '../appster/AppsterView.js'
+import {AppsterGUIId, AppsterGUIClass} from '../appster/AppsterConstants.js'
 
 export default class GoLogoLoView extends AppsterView {
     constructor() {
@@ -53,8 +54,13 @@ export default class GoLogoLoView extends AppsterView {
         toolbar.appendChild(this.buildElement(AppsterHTML.SPAN, "", promptClass, [], GoLogoLoText.GOLOGOLO_MARGIN_TEXT));
         toolbar.appendChild(marginSlider);
 
+        
+
+
         workspace.appendChild(toolbar);
         workspace.appendChild(textDiv);
+        let gologoloTextInputModal = this.buildGoLogoLoTextInputModal();
+        workspace.appendChild(gologoloTextInputModal);
         return workspace;
     }
 
@@ -78,6 +84,62 @@ export default class GoLogoLoView extends AppsterView {
         let marginSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER);
         marginSlider.value = work.getMargin();
         this.loadWorkStyle(work);
+
+    }
+
+    buildGoLogoLoTextInputModal() {
+        let textModal = this.buildElement(  AppsterHTML.DIV, 
+                                            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL,
+                                            [AppsterGUIClass.APPSTER_MODAL],
+                                            [],
+                                            null,
+                                            AppsterGUIClass.MODAL_ANIMATION_LEFT);
+        let textFrame = this.buildElement( AppsterHTML.DIV, 
+                                            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_FRAME,
+                                            [AppsterGUIClass.APPSTER_MODAL_FRAME]);
+        let header = this.buildElement( AppsterHTML.HEADER, 
+                                        GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_HEADER,
+                                        [AppsterGUIClass.APPSTER_MODAL_HEADER]);
+        let section = this.buildElement(    AppsterHTML.SECTION, 
+                                            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_SECTION,
+                                            [AppsterGUIClass.APPSTER_MODAL_SECTION]);
+        let p = this.buildElement(AppsterHTML.P);
+        let strong = this.buildElement(    AppsterHTML.STRONG, 
+                                                "",
+                                                [],
+                                                [],
+                                                GoLogoLoText.GOLOGOLO_TEXT_INPUT_MODAL_PROMPT_TEXT);
+        let textFieldAttributes = [];
+        textFieldAttributes[AppsterHTML.TYPE] = AppsterHTML.TEXT;
+        let textField = this.buildElement(  AppsterHTML.INPUT,
+                                            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_TEXTFIELD,
+                                            [AppsterGUIClass.APPSTER_MODAL_TEXTFIELD],
+                                            textFieldAttributes);
+        let enterButton = this.buildElement(AppsterHTML.BUTTON, 
+                                            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_ENTER_BUTTON,
+                                            [AppsterGUIClass.APPSTER_MODAL_BUTTON],
+                                            [],
+                                            GoLogoLoText.GOLOGOLO_TEXT_INPUT_MODAL_ENTER_BUTTON_TEXT);
+        let cancelButton = this.buildElement(AppsterHTML.BUTTON, 
+                                            GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_CANCEL_BUTTON,
+                                            [AppsterGUIClass.APPSTER_MODAL_BUTTON],
+                                            [],
+                                            GoLogoLoText.GOLOGOLO_TEXT_INPUT_MODAL_CANCEL_BUTTON_TEXT);
+        let footer = this.buildElement(     AppsterHTML.FOOTER, 
+                                            "", 
+                                            [AppsterGUIClass.APPSTER_MODAL_FOOTER],
+                                            [],
+                                            GoLogoLoText.GOLOGOLO_TEXT_INPUT_MODAL_FOOTER_TEXT);
+        p.appendChild(strong);
+        section.appendChild(p);
+        textFrame.appendChild(header);
+        textFrame.appendChild(section);
+        section.appendChild(textField);
+        section.appendChild(enterButton);
+        section.appendChild(cancelButton);
+        textFrame.appendChild(footer);
+        textModal.appendChild(textFrame);
+        return textModal;
     }
 
     loadWorkStyle(work) {
@@ -85,8 +147,12 @@ export default class GoLogoLoView extends AppsterView {
         textDiv.style.color = work.getTextColor();
         textDiv.style.backgroundColor = work.getBackgroundColor();
         textDiv.style.borderColor = work.getBorderColor();
-        textDiv.style.borderRadius = work.getBorderRadius();
-        textDiv.style.borderWidth = work.getBorderThickness();
+        textDiv.style.borderRadius = work.getBorderRadius() + "px";
+        textDiv.style.borderWidth = work.getBorderThickness() + "px";
+        textDiv.style.fontSize = work.getFontSize() + "px";
+        textDiv.style.padding = work.getPadding() + "px";
+        textDiv.style.margin = work.getMargin() + "px";
+        textDiv.style.text = work.getText();
     }
 
     addListItem(initText) {
@@ -106,38 +172,72 @@ export default class GoLogoLoView extends AppsterView {
     updateFontSize() {
         let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER).value;
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.fontSize = dialog + "px";
+        let vars = this.controller.model.currentWork;
+        let output = this.controller.model.getRecentWork(vars);
+        output.setFontSize(dialog);
     }
     updateRadiusSlider() {
         let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_RADIUS_SLIDER).value;
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.borderRadius = dialog + "px";
+        let vars = this.controller.model.currentWork;
+        let output = this.controller.model.getRecentWork(vars);
+        output.setBorderRadius(dialog);
     }
     updateThicknessSlider() {
         let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_THICKNESS_SLIDER).value;
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.borderWidth = dialog + "px";
+        let vars = this.controller.model.currentWork;
+        let output = this.controller.model.getRecentWork(vars);
+        output.setBorderThickness(dialog);
     }
     updatePaddingSlider() {
         let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER).value;
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.padding = dialog + "px";
+        let vars = this.controller.model.currentWork;
+        let output = this.controller.model.getRecentWork(vars);
+        output.setPadding(dialog);
     }
     updateMarginSlider() {
         let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER).value;
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.margin = dialog + "px";
+        let vars = this.controller.model.currentWork;
+        let output = this.controller.model.getRecentWork(vars);
+        output.setMargin(dialog);
     }
     updateColorText() {
         let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_COLOR_PICKER).value;
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.color = dialog;
+        let vars = this.controller.model.currentWork;
+        let output = this.controller.model.getRecentWork(vars);
+        output.setTextColor(dialog);
     }
     updateBackgroundColor() {
         let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BACKGROUND_COLOR_PICKER).value;
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.backgroundColor = dialog;
+        let vars = this.controller.model.currentWork;
+        let output = this.controller.model.getRecentWork(vars);
+        output.setBackgroundColor(dialog);
     }
     updateBorderColor() {
         let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_COLOR_PICKER).value;
         document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.borderColor = dialog;
+        let vars = this.controller.model.currentWork;
+        let output = this.controller.model.getRecentWork(vars);
+        output.setBorderColor(dialog);
     }
     updateTextText() {
-        let dialog = document.getElementById(AppsterGUIId.APPSTER_TEXT_INPUT_MODAL);
-        dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
+        let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL);
+        dialog.classList.add(GoLogoLoGUIClass.IS_VISIBLE);
     }
-
+    hideCancelWork() {
+        let dialog = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL);
+        dialog.classList.remove(GoLogoLoGUIClass.IS_VISIBLE);
+    }
+    getGoName() {
+        return document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_INPUT_MODAL_TEXTFIELD).value;
+    }
+    updateTextName(newName) {
+        console.log(newName);
+        document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT).style.text = newName;
+    }
 }
