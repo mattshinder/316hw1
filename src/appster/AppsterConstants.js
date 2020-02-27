@@ -126,6 +126,7 @@ export const AppsterHTML = {
     COLOR: "color",
     DATA_ANIMATION: "data-animation",
     DIV: "div",
+    FOOTER: "footer",
     HEADER: "header",
     H1: "h1", H2: "h2", H3: "h3", H4: "h4", H5: "h5", H6: "h6",  
     HIDDEN: "hidden",
@@ -152,6 +153,7 @@ export const AppsterHTML = {
   * and scale well.
   */
  export const AppsterSymbols = {
+    EDIT: "Edit Text &#128393;",
     DELETE: "&#128465;"     // TRASH SYMBOL
 };
 

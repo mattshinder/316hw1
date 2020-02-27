@@ -1,5 +1,6 @@
 import AppsterController from '../appster/AppsterController.js'
-import { GoLogoLoCallBack } from './GoLogoLoConstants.js';
+import { GoLogoLoCallBack, GoLogoLoGUIId, } from './GoLogoLoConstants.js'
+import {AppsterHTML} from '../appster/AppsterConstants.js'
 
 export default class GoLogoLoController
  extends AppsterController {
@@ -21,32 +22,32 @@ export default class GoLogoLoController
 
     }
 
-    processEditText() {
+    processEditText = () => {
         this.model.updateText();
     }
-    processFontSlider() {
-        this.model;
+    processFontSlider = () => {
+        this.model.updateFont();
     }
-    processTextColorPicker() {
-        this.model;
+    processTextColorPicker = () => {
+        this.model.updateColor();
     }
-    processBackgroundColorPicker() {
-        this.model;
+    processBackgroundColorPicker = () => {
+        this.model.updateBackground();
     }
-    processBorderColorPicker() {
-        this.model;
+    processBorderColorPicker = () => {
+        this.model.updateBorder();
     }
-    processBorderRadiusSlider() {
-        this.model;
+    processBorderRadiusSlider = () => {
+        this.model.updateRadius();
     }
-    processBorderThicknessSlider() {
-        this.model;
+    processBorderThicknessSlider = () => {
+        this.model.updateThickness();
     }
-    processBorderPaddingSlider() {
-        this.model;
+    processBorderPaddingSlider = () => {
+        this.model.updatePadding();
     }
-    processMarginSlider() {
-        this.model;
+    processMarginSlider = () => {
+        this.model.updateMargin();
     }
 
 }
